@@ -2,155 +2,210 @@
 <html lang="fr">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mon Portfolio</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #1e3a8a;
-      color: white;
-      margin: 0;
-      padding: 0;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portfolio</title>
+    <style>
+        /* Global styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    header {
-      text-align: center;
-      padding: 2rem;
-    }
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #ffffff;
+            background: #1E3A8A; /* Blue background */
+            overflow-x: hidden;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
 
-    h1 {
-      font-size: 3rem;
-      margin: 0;
-    }
+        /* Animations */
+        .fade-in {
+            animation: fadeIn 1.5s ease-in-out;
+        }
 
-    .section {
-      padding: 2rem;
-    }
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
 
-    .category-title {
-      font-size: 2rem;
-      margin-bottom: 1rem;
-      color: #fbbf24;
-    }
+            to {
+                opacity: 1;
+            }
+        }
 
-    .category-title.jobs {
-      color: #ef4444;
-    }
+        /* Header */
+        header {
+            text-align: center;
+            padding: 5rem 0;
+            background: #111827; /* Dark background */
+        }
 
-    .grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 2rem;
-    }
+        header h1 {
+            font-size: 4rem;
+            font-weight: 700;
+            color: #fbbf24; /* Yellow for title */
+            margin-bottom: 0.5rem;
+        }
 
-    .card {
-      background-color: #374151;
-      padding: 1rem;
-      border-radius: 8px;
-    }
+        header p {
+            font-size: 1.2rem;
+            color: #ffffff;
+        }
 
-    .card h3 {
-      font-size: 1.5rem;
-      margin: 0;
-      color: #fbbf24;
-    }
+        /* Section */
+        .section {
+            padding: 4rem 1rem;
+        }
 
-    .card p {
-      color: #d1d5db;
-    }
+        .category-title {
+            font-size: 2rem;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: #fbbf24;
+        }
 
-    footer {
-      text-align: center;
-      padding: 1rem;
-      background-color: #111827;
-    }
+        .projects, .team, .jobs {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            justify-items: center;
+        }
 
-    footer p {
-      color: #93c5fd;
-    }
+        /* Cards */
+        .card {
+            background: #374151; /* Dark gray card */
+            border-radius: 8px;
+            padding: 1.5rem;
+            width: 100%;
+            max-width: 350px;
+            text-align: center;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
 
-    footer a {
-      color: #93c5fd;
-      text-decoration: none;
-      padding: 0.5rem 1rem;
-      border: 1px solid #93c5fd;
-      border-radius: 4px;
-      transition: background-color 0.3s;
-    }
+        .card h3 {
+            font-size: 1.5rem;
+            color: #fbbf24; /* Yellow */
+        }
 
-    footer a:hover {
-      background-color: #93c5fd;
-    }
-  </style>
+        .card p {
+            font-size: 1rem;
+            color: #d1d5db;
+        }
+
+        .card a {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            color: #ffffff;
+            background-color: #10b981; /* Green button */
+            border-radius: 5px;
+            text-decoration: none;
+            transition: background-color 0.3s;
+        }
+
+        .card a:hover {
+            background-color: #059669;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            background-color: #111827;
+            color: #93c5fd;
+        }
+
+        footer a {
+            color: #93c5fd;
+            text-decoration: none;
+            border: 1px solid #93c5fd;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        footer a:hover {
+            background-color: #93c5fd;
+            color: #111827;
+        }
+    </style>
 </head>
 
 <body>
-  <header>
-    <h1>Mon Portfolio</h1>
-    <p>Développeur & Créateur</p>
-  </header>
+    <header class="fade-in">
+        <h1>Legraschat</h1>
+        <p>Développeur & Créateur de contenu</p>
+    </header>
 
-  <div class="section">
-    <h2 class="category-title">Projets</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Graschatium</h3>
-        <p>Projet créatif et innovant</p>
-        <a href="#">Voir le projet</a>
-      </div>
-      <div class="card">
-        <h3>Legraschat Creative FTN</h3>
-        <p>Développement créatif sur Fortnite</p>
-        <a href="#">Voir le projet</a>
-      </div>
-      <div class="card">
-        <h3>Legraschat Dev. Roblox</h3>
-        <p>Développement de jeux sur Roblox</p>
-        <a href="#">Voir le projet</a>
-      </div>
-      <div class="card">
-        <h3>Legraschat Dev. Discord</h3>
-        <p>Création de bots et services Discord</p>
-        <a href="#">Voir le projet</a>
-      </div>
+    <div class="section fade-in">
+        <h2 class="category-title">Projets</h2>
+        <div class="projects">
+            <div class="card">
+                <h3>Graschatium</h3>
+                <p>Projet créatif et innovant</p>
+                <a href="#">Voir le projet</a>
+            </div>
+            <div class="card">
+                <h3>Legraschat Creative FTN</h3>
+                <p>Développement créatif sur Fortnite</p>
+                <a href="#">Voir le projet</a>
+            </div>
+            <div class="card">
+                <h3>Legraschat Dev. Roblox</h3>
+                <p>Développement de jeux sur Roblox</p>
+                <a href="#">Voir le projet</a>
+            </div>
+            <div class="card">
+                <h3>Legraschat Dev. Discord</h3>
+                <p>Création de bots et services Discord</p>
+                <a href="#">Voir le projet</a>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2 class="category-title">Équipe</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Membre 1</h3>
-        <p>Développeur</p>
-      </div>
-      <div class="card">
-        <h3>Membre 2</h3>
-        <p>Designer</p>
-      </div>
+    <div class="section fade-in">
+        <h2 class="category-title">Équipe</h2>
+        <div class="team">
+            <div class="card">
+                <h3>Shadow</h3>
+                <p>Manageur</p>
+            </div>
+            <div class="card">
+                <h3>Ranya</h3>
+                <p>Modératrice</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <div class="section">
-    <h2 class="category-title jobs">Emplois</h2>
-    <div class="grid">
-      <div class="card">
-        <h3>Développeur Web</h3>
-        <p>Entreprise X</p>
-        <p>Création et maintenance de sites web</p>
-      </div>
-      <div class="card">
-        <h3>Développeur Backend</h3>
-        <p>Entreprise Y</p>
-        <p>Développement d'API et gestion des bases de données</p>
-      </div>
+    <div class="section fade-in">
+        <h2 class="category-title">Emplois</h2>
+        <div class="jobs">
+            <div class="card">
+                <h3>Administrateur Discord</h3>
+                <p>Waky Family</p>
+                <p>Création et maintenance de sites web</p>
+            </div>
+            <div class="card">
+                <h3>Administrateur Discord</h3>
+                <p>Viral Community</p>
+                <p>Développement d'API et gestion des bases de données</p>
+            </div>
+        </div>
     </div>
-  </div>
 
-  <footer>
-    <p>Rejoignez-moi sur Discord</p>
-    <a href="https://discord.gg/77V3ryPTr3">Rejoindre</a>
-  </footer>
+    <footer class="fade-in">
+        <p>Rejoignez-moi sur Discord</p>
+        <a href="https://discord.gg/77V3ryPTr3">Rejoindre</a>
+    </footer>
+
 </body>
 
 </html>
