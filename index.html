@@ -1,179 +1,156 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Portfolio</title>
+    <title>Legraschat - Portfolio</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
     <style>
-        /* Global styles */
+        /* Styles globaux */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
+            font-family: Arial, sans-serif;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            color: #ffffff;
-            background: #60636b; /* Blue background */
-            overflow-x: hidden;
-            height: 100%;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-
-        /* Animations */
-        .fade-in {
-            animation: fadeIn 1.5s ease-in-out;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-
-            to {
-                opacity: 1;
-            }
+            background-color: #1a1a2e;
+            color: white;
+            text-align: center;
         }
 
         /* Header */
         header {
-            text-align: center;
-            padding: 5rem 0;
-            background: #111827; /* Dark background */
+            padding: 50px 20px;
+            background-color: #16213e;
         }
 
-        header h1 {
-            font-size: 4rem;
-            font-weight: 700;
-            color: #ff0000; /* Yellow for title */
-            margin-bottom: 0.5rem;
+        .profile-pic {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 4px solid #e94560;
         }
 
-        header p {
+        h1 {
+            margin-top: 10px;
+            font-size: 2.5rem;
+        }
+
+        p {
             font-size: 1.2rem;
-            color: #ffffff;
         }
 
         /* Section */
         .section {
-            padding: 4rem 1rem;
+            margin: 50px 20px;
         }
 
-        .category-title {
+        h2 {
             font-size: 2rem;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #ff0000;
+            margin-bottom: 20px;
+            color: #e94560;
         }
 
-        .projects, .team, .jobs {
+        .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            gap: 2rem;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
             justify-items: center;
         }
 
-        /* Cards */
         .card {
-            background: #520000; /* Dark gray card */
-            border-radius: 8px;
-            padding: 1.5rem;
-            width: 100%;
-            max-width: 350px;
-            text-align: center;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-            opacity: 0;
-            animation: fadeIn 1s forwards;
+            background: #0f3460;
+            padding: 20px;
+            border-radius: 10px;
+            width: 250px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
         }
 
         .card h3 {
+            color: #e94560;
             font-size: 1.5rem;
-            color: #ff0000; /* Yellow */
         }
 
         .card p {
             font-size: 1rem;
-            color: #d1d5db;
+            color: #ddd;
         }
 
         .card a {
             display: inline-block;
-            margin-top: 1rem;
-            padding: 0.5rem 1rem;
-            color: #ffffff;
-            background-color: #10b981; /* Green button */
-            border-radius: 5px;
+            margin-top: 10px;
+            padding: 8px 15px;
+            background-color: #e94560;
+            color: white;
             text-decoration: none;
-            transition: background-color 0.3s;
+            border-radius: 5px;
+            transition: 0.3s;
         }
 
         .card a:hover {
-            background-color: #059669;
+            background-color: #b92d45;
         }
 
         /* Footer */
         footer {
-            text-align: center;
-            padding: 2rem;
-            background-color: #111827;
-            color: #93c5fd;
+            padding: 20px;
+            background: #16213e;
+            margin-top: 50px;
         }
 
-        footer a {
-            color: #fd9393;
-            text-decoration: none;
-            border: 1px solid #fd9393;
-            padding: 0.5rem 1rem;
-            border-radius: 5px;
-            transition: background-color 0.3s;
+        .social-icons a {
+            color: white;
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: 0.3s;
         }
 
-        footer a:hover {
-            background-color: #ffffff;
-            color: #111827;
+        .social-icons a:hover {
+            color: #e94560;
         }
+
     </style>
 </head>
-
 <body>
-    <header class="fade-in">
+
+    <header>
+        <img src="profile.jpg" alt="Photo de profil" class="profile-pic">
         <h1>Legraschat</h1>
         <p>Développeur & Créateur de contenu</p>
     </header>
 
-    <div class="section fade-in">
-        <h2 class="category-title">Projets</h2>
-        <div class="projects">
+    <section class="section">
+        <h2>Projets</h2>
+        <div class="grid">
             <div class="card">
                 <h3>Graschatium</h3>
                 <p>Projet créatif et innovant</p>
-                <a href="#">Voir le projet</a>
+                <a href="#">Voir</a>
             </div>
             <div class="card">
                 <h3>Legraschat Creative FTN</h3>
                 <p>Développement créatif sur Fortnite</p>
-                <a href="#">Voir le projet</a>
+                <a href="#">Voir</a>
             </div>
             <div class="card">
                 <h3>Legraschat Dev. Roblox</h3>
                 <p>Développement de jeux sur Roblox</p>
-                <a href="#">Voir le projet</a>
+                <a href="#">Voir</a>
             </div>
             <div class="card">
                 <h3>Legraschat Dev. Discord</h3>
                 <p>Création de bots et services Discord</p>
-                <a href="#">Voir le projet</a>
+                <a href="#">Voir</a>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section fade-in">
-        <h2 class="category-title">Équipe</h2>
-        <div class="team">
+    <section class="section">
+        <h2>Équipe</h2>
+        <div class="grid">
             <div class="card">
                 <h3>Shadow</h3>
                 <p>Manageur</p>
@@ -183,29 +160,33 @@
                 <p>Modératrice</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <div class="section fade-in">
-        <h2 class="category-title">Emplois</h2>
-        <div class="jobs">
+    <section class="section">
+        <h2>Emplois</h2>
+        <div class="grid">
             <div class="card">
-                <h3>Administrateur Discord</h3>
-                <p>Waky Family</p>
-                <p>Création et maintenance de sites web</p>
+                <h3>Waky Family</h3>
+                <p><strong>Administrateur Discord</strong></p>
+                <p>Gestion et modération de serveurs Discord</p>
             </div>
             <div class="card">
-                <h3>Administrateur Discord</h3>
-                <p>Viral Community</p>
-                <p>Développement d'API et gestion des bases de données</p>
+                <h3>Viral Community</h3>
+                <p><strong>Administrateur Discord</strong></p>
+                <p>Création et automatisation de bots Discord</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <footer class="fade-in">
-        <p>Rejoignez-moi sur Discord</p>
-        <a href="https://discord.gg/77V3ryPTr3">Rejoindre</a>
+    <footer>
+        <p>Retrouvez-moi sur mes réseaux</p>
+        <div class="social-icons">
+            <a href="https://www.youtube.com/@LeVraiLegraschat" target="_blank"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.twitch.tv/legraschat" target="_blank"><i class="fab fa-twitch"></i></a>
+            <a href="https://twitter.com/LeVraiLegraschat" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://discord.gg/77V3ryPTr3" target="_blank"><i class="fab fa-discord"></i></a>
+        </div>
     </footer>
 
 </body>
-
 </html>
