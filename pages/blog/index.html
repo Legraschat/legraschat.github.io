@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #6366f1;
+        }
+
+        main {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+        }
+
+        .page-hero {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .filter-tag:hover, .filter-tag.active {
+            background: white;
+            color: #6366f1;
+            border-color: white;
+        }
+
+        .content-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 3rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .featured-post {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border-radius: 20px;
+            padding: 3rem;
+            margin-bottom: 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .featured-post::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            transform: translate(30px, -30px);
+        }
+
+        .featured-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.3rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .featured-post h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .featured-post p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .featured-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .featured-date, .featured-read-time {
+            opacity: 0.8;
+        }
+
+        .read-more-btn {
+            background: white;
+            color: #6366f1;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: transform 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .posts-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .post-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e2e8f0;
+        }
+
+        .post-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .post-image {
+            height: 200px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #6366f1;
+            position: relative;
+        }
+
+        .post-category {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: #6366f1;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .post-content {
+            padding: 1.5rem;
+        }
+
+        .post-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            color: #64748b;
+        }
+
+        .post-title {
+            font-size: 1.4rem;
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+            line-height: 1.4;
+        }
+
+        .post-excerpt {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+            line-height: 1.6;
+        }
+
+        .post-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .post-tag {
+            background: #f1f5f9;
+            color: #475569;
+            padding: 0.2rem 0.6rem;
+            border-radius: 12px;
+            font-size: 0.8rem;
+        }
+
+        .post-link {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .post-link:hover {
+            text-decoration: underline;
+        }
+
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .pagination button {
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .pagination button:hover, .pagination button.active {
+            background: #6366f1;
+            color: white;
+            border-color: #6366f1;
+        }
+
+        .newsletter {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .newsletter h3 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter p {
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #4f46e5;
+        }
+
+        .search-section {
+            margin-bottom: 2rem;
+        }
+
+        .search-box {
+            width: 100%;
+            max-width: 500px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 1rem 3rem 1rem 1rem;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 25px;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .search-input::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .search-icon {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1.2rem;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .featured-post {
+                padding: 2rem;
+            }
+            
+            .featured-post h2 {
+                font-size: 1.8rem;
+            }
+            
+            .posts-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .blog-filters {
+                justify-content: flex-start;
+                overflow-x: auto;
+                padding-bottom: 1rem;
+            }
+        }
+
+        .post-card[data-category] {
+            display: block;
+        }
+
+        .post-card.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Mon Portfolio</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="blog.html" class="active">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Mon Blog</h1>
+                <p>Découvrez mes réflexions, tutoriels et analyses sur le développement, la création de contenu et l'univers digital. Partageons nos connaissances !</p>
+                
+                <div class="search-section">
+                    <div class="search-box">
+                        <input type="text" class="search-input" placeholder="Rechercher un article..." id="searchInput">
+                        <span class="search-icon">🔍</span>
+                    </div>
+                </div>
+
+                <div class="blog-filters">
+                    <div class="filter-tag active" data-filter="all">Tous</div>
+                    <div class="filter-tag" data-filter="dev">Développement</div>
+                    <div class="filter-tag" data-filter="content">Création de Contenu</div>
+                    <div class="filter-tag" data-filter="social">Réseaux Sociaux</div>
+                    <div class="filter-tag" data-filter="tech">Technologie</div>
+                    <div class="filter-tag" data-filter="tips">Conseils</div>
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="content-section">
+                <div class="featured-post">
+                    <div class="featured-badge">⭐ Article à la Une</div>
+                    <h2>L'IA et la Création de Contenu : Révolution ou Evolution ?</h2>
+                    <p>Une analyse approfondie de l'impact de l'intelligence artificielle sur l'industrie créative et comment les créateurs peuvent s'adapter et tirer parti de ces nouveaux outils.</p>
+                    <div class="featured-meta">
+                        <span class="featured-date">📅 15 Août 2025</span>
+                        <span class="featured-read-time">⏱️ 8 min de lecture</span>
+                        <span class="featured-views">👀 1.2K vues</span>
+                    </div>
+                    <a href="#" class="read-more-btn">Lire l'article complet</a>
+                </div>
+
+                <div class="posts-grid">
+                    <article class="post-card" data-category="dev">
+                        <div class="post-image">💻
+                            <div class="post-category">Développement</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 12 Août 2025</span>
+                                <span>⏱️ 5 min</span>
+                                <span>👀 856 vues</span>
+                            </div>
+                            <h3 class="post-title">React 18 : Les Nouvelles Fonctionnalités à Connaître</h3>
+                            <p class="post-excerpt">Découvrez les dernières améliorations de React 18, notamment le Concurrent Rendering, Suspense et les nouvelles hooks qui révolutionnent le développement d'interfaces utilisateur.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">React</span>
+                                <span class="post-tag">JavaScript</span>
+                                <span class="post-tag">Frontend</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="content">
+                        <div class="post-image">🎨
+                            <div class="post-category">Création</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 10 Août 2025</span>
+                                <span>⏱️ 7 min</span>
+                                <span>👀 1.1K vues</span>
+                            </div>
+                            <h3 class="post-title">Créer du Contenu Viral : Mes 10 Secrets</h3>
+                            <p class="post-excerpt">Après avoir créé du contenu qui a touché plus de 2 millions de personnes, je partage mes stratégies pour créer du contenu engageant et viral sur les réseaux sociaux.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">Viral</span>
+                                <span class="post-tag">Stratégie</span>
+                                <span class="post-tag">Engagement</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="social">
+                        <div class="post-image">📱
+                            <div class="post-category">Réseaux Sociaux</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 8 Août 2025</span>
+                                <span>⏱️ 4 min</span>
+                                <span>👀 743 vues</span>
+                            </div>
+                            <h3 class="post-title">TikTok Algorithm 2025 : Ce Qui a Changé</h3>
+                            <p class="post-excerpt">Une analyse des dernières modifications de l'algorithme TikTok et comment adapter votre stratégie de contenu pour maximiser votre reach et votre engagement en 2025.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">TikTok</span>
+                                <span class="post-tag">Algorithm</span>
+                                <span class="post-tag">Growth</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="tech">
+                        <div class="post-image">🤖
+                            <div class="post-category">Technologie</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 5 Août 2025</span>
+                                <span>⏱️ 6 min</span>
+                                <span>👀 692 vues</span>
+                            </div>
+                            <h3 class="post-title">Automatiser sa Création de Contenu avec l'IA</h3>
+                            <p class="post-excerpt">Comment utiliser intelligemment les outils d'IA pour optimiser votre workflow de création sans perdre votre authenticité et votre créativité personnelle.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">IA</span>
+                                <span class="post-tag">Automation</span>
+                                <span class="post-tag">Productivity</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="dev">
+                        <div class="post-image">🌐
+                            <div class="post-category">Développement</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 2 Août 2025</span>
+                                <span>⏱️ 9 min</span>
+                                <span>👀 1.3K vues</span>
+                            </div>
+                            <h3 class="post-title">Guide Complet : API REST avec Node.js</h3>
+                            <p class="post-excerpt">Créez une API REST robuste et sécurisée avec Node.js, Express et MongoDB. Tutorial complet avec authentification JWT et bonnes pratiques de sécurité.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">Node.js</span>
+                                <span class="post-tag">API</span>
+                                <span class="post-tag">Backend</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="tips">
+                        <div class="post-image">💡
+                            <div class="post-category">Conseils</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 30 Juillet 2025</span>
+                                <span>⏱️ 3 min</span>
+                                <span>👀 567 vues</span>
+                            </div>
+                            <h3 class="post-title">Productivité : Mon Setup de Travail 2025</h3>
+                            <p class="post-excerpt">Découvrez les outils, applications et techniques que j'utilise quotidiennement pour rester productif et créatif dans mes projets de développement et de création.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">Productivité</span>
+                                <span class="post-tag">Setup</span>
+                                <span class="post-tag">Outils</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="content">
+                        <div class="post-image">📝
+                            <div class="post-category">Création</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 28 Juillet 2025</span>
+                                <span>⏱️ 5 min</span>
+                                <span>👀 821 vues</span>
+                            </div>
+                            <h3 class="post-title">Storytelling Digital : L'Art de Captiver</h3>
+                            <p class="post-excerpt">Les techniques narratives qui transforment un simple post en histoire captivante. Comment utiliser le storytelling pour engager votre audience durablement.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">Storytelling</span>
+                                <span class="post-tag">Narrative</span>
+                                <span class="post-tag">Engagement</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="social">
+                        <div class="post-image">📊
+                            <div class="post-category">Réseaux Sociaux</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 25 Juillet 2025</span>
+                                <span>⏱️ 6 min</span>
+                                <span>👀 934 vues</span>
+                            </div>
+                            <h3 class="post-title">Analytics Réseaux Sociaux : Métriques Importantes</h3>
+                            <p class="post-excerpt">Quelles métriques surveiller vraiment ? Comment interpréter vos données d'engagement et optimiser votre stratégie grâce aux analytics de chaque plateforme.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">Analytics</span>
+                                <span class="post-tag">Metrics</span>
+                                <span class="post-tag">Strategy</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+
+                    <article class="post-card" data-category="tech">
+                        <div class="post-image">⚡
+                            <div class="post-category">Technologie</div>
+                        </div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <span>📅 22 Juillet 2025</span>
+                                <span>⏱️ 4 min</span>
+                                <span>👀 678 vues</span>
+                            </div>
+                            <h3 class="post-title">Web3 et Créateurs : Nouvelles Opportunités</h3>
+                            <p class="post-excerpt">Explorer les possibilités qu'offre le Web3 aux créateurs de contenu : NFTs, DAOs, tokens, et nouvelles formes de monétisation décentralisée.</p>
+                            <div class="post-tags">
+                                <span class="post-tag">Web3</span>
+                                <span class="post-tag">NFT</span>
+                                <span class="post-tag">Blockchain</span>
+                            </div>
+                            <a href="#" class="post-link">Lire la suite →</a>
+                        </div>
+                    </article>
+                </div>
+
+                <div class="pagination">
+                    <button>← Précédent</button>
+                    <button class="active">1</button>
+                    <button>2</button>
+                    <button>3</button>
+                    <button>Suivant →</button>
+                </div>
+            </section>
+
+            <section class="newsletter">
+                <h3>📬 Newsletter Créative</h3>
+                <p>Recevez mes derniers articles, tips exclusifs et tendances créatives directement dans votre boîte mail. Une fois par semaine, pas de spam !</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="votre@email.com" required>
+                    <button type="submit" class="newsletter-button">S'abonner</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        // Système de filtrage des articles
+        const filterTags = document.querySelectorAll('.filter-tag');
+        const postCards = document.querySelectorAll('.post-card');
+
+        filterTags.forEach(tag => {
+            tag.addEventListener('click', () => {
+                // Retirer la classe active
+                filterTags.forEach(t => t.classList.remove('active'));
+                tag.classList.add('active');
+
+                const filterValue = tag.dataset.filter;
+
+                postCards.forEach(card => {
+                    if (filterValue === 'all' || card.dataset.category === filterValue) {
+                        card.classList.remove('hidden');
+                        card.style.display = 'block';
+                    } else {
+                        card.classList.add('hidden');
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Fonction de recherche
+        const searchInput = document.getElementById('searchInput');
+        searchInput.addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            postCards.forEach(card => {
+                const title = card.querySelector('.post-title').textContent.toLowerCase();
+                const excerpt = card.querySelector('.post-excerpt').textContent.toLowerCase();
+                const tags = Array.from(card.querySelectorAll('.post-tag')).map(tag => tag.textContent.toLowerCase());
+                
+                const matchesSearch = title.includes(searchTerm) || 
+                                    excerpt.includes(searchTerm) || 
+                                    tags.some(tag => tag.includes(searchTerm));
+
+                if (searchTerm === '' || matchesSearch) {
+                    card.classList.remove('hidden');
+                    card.style.display = 'block';
+                } else {
+                    card.classList.add('hidden');
+                    card.style.display = 'none';
+                }
+            });
+
+            // Si recherche active, désactiver les filtres
+            if (searchTerm !== '') {
+                filterTags.forEach(tag => tag.classList.remove('active'));
+            }
+        });
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.newsletter-input').value;
+            
+            alert(`Merci ! Vous êtes maintenant abonné(e) à la newsletter avec l'email : ${email}`);
+            event.target.reset();
+        }
+
+        // Animation des cartes au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialiser les animations
+        document.querySelectorAll('.post-card').forEach((card, index) => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(30px)';
+            card.style.transition = `all 0.6s ease ${index * 0.1}s`;
+            observer.observe(card);
+        });
+
+        // Animation du post featured
+        const featuredPost = document.querySelector('.featured-post');
+        featuredPost.style.opacity = '0';
+        featuredPost.style.transform = 'translateY(30px)';
+        featuredPost.style.transition = 'all 0.8s ease';
+        observer.observe(featuredPost);
+
+        // Pagination (simulation)
+        document.querySelectorAll('.pagination button').forEach(btn => {
+            btn.addEventListener('click', function() {
+                if (this.textContent.includes('Précédent') || this.textContent.includes('Suivant')) {
+                    return;
+                }
+                
+                document.querySelectorAll('.pagination button').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                // Simuler le changement de page
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+        });
+
+        // Effet de typing sur le titre
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Lancer l'animation de typing au chargement
+        window.addEventListener('load', () => {
+            const title = document.querySelector('.page-hero h1');
+            const originalText = title.textContent;
+            typeWriter(title, originalText, 150);
+        });
+
+        // Compteur de vues simulé
+        function updateViewCounts() {
+            document.querySelectorAll('.post-meta span').forEach(span => {
+                if (span.textContent.includes('vues')) {
+                    const currentViews = parseInt(span.textContent.match(/\d+/)[0]);
+                    const newViews = currentViews + Math.floor(Math.random() * 10);
+                    span.textContent = span.textContent.replace(/\d+/, newViews);
+                }
+            });
+        }
+
+        // Mettre à jour les vues toutes les 30 secondes
+        setInterval(updateViewCounts, 30000);
+
+        // Effet de hover sur les cartes
+        postCards.forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    </script>
+</body>
+</html>
