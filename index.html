@@ -1279,9 +1279,10 @@
             return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
         }
 
-        function showJoinForm() {
-            navLinks("https://forms.gle/Q19os2ArauWL29He6");
-        }
+      function showJoinForm() {
+    window.open("https://forms.gle/Q19os2ArauWL29He6", "_blank");
+                            }
+
 
         // Initialiser au chargement
         document.addEventListener('DOMContentLoaded', () => {
