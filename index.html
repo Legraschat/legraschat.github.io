@@ -35,6 +35,12 @@
             right: 0;
             z-index: 1000;
             box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        [data-theme="dark"] header {
+            background: rgba(31, 41, 55, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
         }
 
         nav {
@@ -54,17 +60,116 @@
             display: flex;
             list-style: none;
             gap: 2rem;
+            transition: all 0.3s ease;
         }
 
         .nav-links a {
             text-decoration: none;
-            color: #333;
+            color: var(--text-primary);
             font-weight: 500;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: var(--accent-primary);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
 
         .nav-links a:hover {
-            color: #6366f1;
+            color: var(--accent-primary);
+            background: rgba(99, 102, 241, 0.1);
+        }
+
+        .nav-links a:hover::after {
+            width: 80%;
+        }
+
+        /* Burger Menu */
+        .burger-menu {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 1001;
+        }
+
+        .burger-line {
+            width: 25px;
+            height: 3px;
+            background: var(--text-primary);
+            margin: 3px 0;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .burger-menu.active .burger-line:nth-child(1) {
+            transform: rotate(-45deg) translate(-5px, 6px);
+        }
+
+        .burger-menu.active .burger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .burger-menu.active .burger-line:nth-child(3) {
+            transform: rotate(45deg) translate(-5px, -6px);
+        }
+
+        /* Navigation mobile */
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                flex-direction: column;
+                background: rgba(255, 255, 255, 0.98);
+                backdrop-filter: blur(20px);
+                width: 300px;
+                height: calc(100vh - 70px);
+                padding: 2rem 0;
+                box-shadow: -5px 0 20px rgba(0, 0, 0, 0.1);
+                transition: right 0.3s ease;
+                gap: 1rem;
+            }
+
+            [data-theme="dark"] .nav-links {
+                background: rgba(31, 41, 55, 0.98);
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links li {
+                width: 100%;
+                text-align: center;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 1rem 2rem;
+                font-size: 1.1rem;
+                width: 100%;
+                transition: all 0.3s ease;
+            }
+
+            .nav-links a:hover {
+                background: rgba(99, 102, 241, 0.15);
+                transform: translateX(10px);
+            }
+
+            .burger-menu {
+                display: flex;
+            }
         }
 
         main {
@@ -266,6 +371,10 @@
             overflow: hidden;
         }
 
+        [data-theme="dark"] .team-card {
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+        }
+
         .team-card::before {
             content: '';
             position: absolute;
@@ -300,6 +409,16 @@
             border: 3px solid white;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .team-avatar {
+            border: 3px solid var(--bg-secondary);
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .team-avatar:first-child {
+            background: url('favicon.png') center/cover, var(--bg-secondary);
         }
 
         .team-card:hover .team-avatar {
@@ -387,6 +506,31 @@
         .join-button:hover {
             transform: translateY(-2px);
             box-shadow: 0 8px 25px rgba(99, 102, 241, 0.4);
+        }
+
+        .blog-filters {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            border: 2px solid #6366f1;
+            background: transparent;
+            color: #6366f1;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: #6366f1;
+            color: white;
         }
 
         .blog-preview {
@@ -486,10 +630,15 @@
         }
 
         footer {
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--bg-primary);
             text-align: center;
             padding: 2rem 0;
             margin-top: 4rem;
+            border-top: 1px solid var(--border-color);
+        }
+
+        footer p {
+            color: var(--text-secondary);
         }
 
         .social-links {
@@ -699,10 +848,8 @@
         .color-option:hover {
             transform: scale(1.05);
         }
-            .nav-links {
-                display: none;
-            }
-            
+
+        @media (max-width: 768px) {
             .hero h1 {
                 font-size: 2rem;
             }
@@ -714,7 +861,7 @@
             .section h2 {
                 font-size: 2rem;
             }
-        
+        }
     </style>
 </head>
 <body>
@@ -722,12 +869,20 @@
         <div class="container">
             <nav>
                 <div class="logo">Legraschat</div>
-                <ul class="nav-links">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#projets">Projets</a></li>
-                    <li><a href="pages/jobs/v2/">Équipe</a></li>
-                    <li><a href="/pages/blog/">Blog</a></li>
-                    <li><a href="/pages/contact/">Contact</a></li>
+                
+                <!-- Burger Menu -->
+                <div class="burger-menu" onclick="toggleMenu()">
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                    <div class="burger-line"></div>
+                </div>
+                
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
+                    <li><a href="#projets" onclick="closeMenu()">Projets</a></li>
+                    <li><a href="#equipe" onclick="closeMenu()">Équipe</a></li>
+                    <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
+                    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -790,17 +945,36 @@
                 <h2>Notre Équipe</h2>
                 <div class="team-grid">
                     <div class="team-card">
-                        <div class="team-avatar">🐱</div>
+                        <div class="team-avatar"></div>
                         <h3>Legraschat</h3>
+                        <div class="role-tags">
+                            <span class="role-tag dev">Dev</span>
+                            <span class="role-tag content">Content</span>
+                        </div>
                         <p>Créateur de Contenu & Développeur</p>
                         <p>Lead créatif, développement et stratégie de contenu</p>
+                        <div class="social-links-member">
+                            <a href="#" title="Instagram">📸</a>
+                            <a href="#" title="Twitter">🐦</a>
+                            <a href="#" title="LinkedIn">💼</a>
+                            <a href="#" title="GitHub">💻</a>
+                        </div>
                     </div>
                     
                     <div class="team-card">
                         <div class="team-avatar">👤</div>
                         <h3>Coéquipier</h3>
-                        <p>Spécialiste [Rôle à définir]</p>
+                        <div class="role-tags">
+                            <span class="role-tag design">Design</span>
+                            <span class="role-tag marketing">Marketing</span>
+                        </div>
+                        <p>Spécialiste Design & Marketing</p>
                         <p>Expertise complémentaire et collaboration créative</p>
+                        <div class="social-links-member">
+                            <a href="#" title="Instagram">📸</a>
+                            <a href="#" title="Behance">🎨</a>
+                            <a href="#" title="LinkedIn">💼</a>
+                        </div>
                     </div>
                 </div>
                 
@@ -813,33 +987,18 @@
 
             <section id="blog" class="section">
                 <h2>Derniers Articles</h2>
-                <div class="blog-preview">
-                    <div class="blog-card">
-                        <div class="blog-image">📝</div>
-                        <div class="blog-content">
-                            <div class="blog-date">15 Août 2025</div>
-                            <h3>Les tendances créatives 2025</h3>
-                            <p>Découvrez les nouvelles approches qui transforment la création de contenu cette année...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <div class="blog-image">🚀</div>
-                        <div class="blog-content">
-                            <div class="blog-date">10 Août 2025</div>
-                            <h3>Développer son audience</h3>
-                            <p>Mes stratégies pour construire une communauté engagée sur les réseaux sociaux...</p>
-                        </div>
-                    </div>
-                    
-                    <div class="blog-card">
-                        <div class="blog-image">⚡</div>
-                        <div class="blog-content">
-                            <div class="blog-date">5 Août 2025</div>
-                            <h3>Outils créatifs indispensables</h3>
-                            <p>Ma sélection des meilleurs outils pour créer du contenu de qualité professionnelle...</p>
-                        </div>
-                    </div>
+                
+                <!-- Filtres par catégorie -->
+                <div class="blog-filters">
+                    <button class="filter-btn active" data-filter="all">Tous</button>
+                    <button class="filter-btn" data-filter="dev">Développement</button>
+                    <button class="filter-btn" data-filter="writing">Écriture</button>
+                    <button class="filter-btn" data-filter="social">Réseaux Sociaux</button>
+                    <button class="filter-btn" data-filter="tutorial">Tutoriels</button>
+                </div>
+                
+                <div class="blog-preview" id="blogContainer">
+                    <!-- Les articles seront chargés dynamiquement -->
                 </div>
             </section>
         </div>
@@ -857,10 +1016,286 @@
         </div>
     </footer>
 
+    <!-- Mode sombre et sélecteur de couleurs -->
+    <button class="theme-toggle" onclick="toggleTheme()" id="themeToggle">🌙</button>
+    
+    <div class="color-picker" id="colorPicker">
+        <h4 style="margin-bottom: 1rem; color: var(--text-primary); font-size: 0.9rem;">Couleurs</h4>
+        <div class="color-options">
+            <div class="color-option active" style="background: linear-gradient(135deg, #6366f1, #8b5cf6)" data-colors='{"start":"#6366f1","end":"#8b5cf6","accent":"#6366f1"}'></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #ef4444, #dc2626)" data-colors='{"start":"#ef4444","end":"#dc2626","accent":"#ef4444"}'></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #10b981, #059669)" data-colors='{"start":"#10b981","end":"#059669","accent":"#10b981"}'></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #f59e0b, #d97706)" data-colors='{"start":"#f59e0b","end":"#d97706","accent":"#f59e0b"}'></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #ec4899, #be185d)" data-colors='{"start":"#ec4899","end":"#be185d","accent":"#ec4899"}'></div>
+            <div class="color-option" style="background: linear-gradient(135deg, #06b6d4, #0891b2)" data-colors='{"start":"#06b6d4","end":"#0891b2","accent":"#06b6d4"}'></div>
+        </div>
+    </div>
+
     <script>
+        // Données du blog (remplace par un appel API plus tard)
+        const blogData = [
+            {
+                id: 1,
+                title: "Les tendances créatives 2025",
+                excerpt: "Découvrez les nouvelles approches qui transforment la création de contenu cette année...",
+                date: "2025-08-15",
+                tags: ["writing", "social"],
+                emoji: "📝",
+                readTime: "5 min"
+            },
+            {
+                id: 2,
+                title: "Développer son audience",
+                excerpt: "Mes stratégies pour construire une communauté engagée sur les réseaux sociaux...",
+                date: "2025-08-10",
+                tags: ["social", "tutorial"],
+                emoji: "🚀",
+                readTime: "8 min"
+            },
+            {
+                id: 3,
+                title: "Outils créatifs indispensables",
+                excerpt: "Ma sélection des meilleurs outils pour créer du contenu de qualité professionnelle...",
+                date: "2025-08-05",
+                tags: ["dev", "tutorial"],
+                emoji: "⚡",
+                readTime: "6 min"
+            },
+            {
+                id: 4,
+                title: "Mon setup de développement",
+                excerpt: "Découvrez mon environnement de travail et mes outils préférés pour coder...",
+                date: "2025-07-28",
+                tags: ["dev"],
+                emoji: "💻",
+                readTime: "4 min"
+            }
+        ];
+
+        // Menu mobile
+        function toggleMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const burger = document.querySelector('.burger-menu');
+            
+            navLinks.classList.toggle('active');
+            burger.classList.toggle('active');
+        }
+
+        function closeMenu() {
+            const navLinks = document.getElementById('navLinks');
+            const burger = document.querySelector('.burger-menu');
+            
+            navLinks.classList.remove('active');
+            burger.classList.remove('active');
+        }
+
+        // Fonction pour formater les dates
+        function formatDate(dateString) {
+            const options = { 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric' 
+            };
+            return new Date(dateString).toLocaleDateString('fr-FR', options);
+        }
+
+        // Fonction pour filtrer les articles par catégorie
+        function filterBlogPosts(category) {
+            const container = document.getElementById('blogContainer');
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            
+            // Mettre à jour les boutons actifs
+            filterBtns.forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.getAttribute('data-filter') === category) {
+                    btn.classList.add('active');
+                }
+            });
+            
+            // Filtrer les données
+            let filteredData = category === 'all' ? blogData : blogData.filter(post => post.tags.includes(category));
+            
+            // Vider le conteneur
+            container.innerHTML = '';
+            
+            // Recharger avec animation
+            filteredData.forEach((post, index) => {
+                const tagElements = post.tags.map(tag => 
+                    `<span class="blog-tag ${tag}">${tag}</span>`
+                ).join('');
+
+                const postElement = document.createElement('div');
+                postElement.className = 'blog-card';
+                postElement.innerHTML = `
+                    <div class="blog-image">${post.emoji}</div>
+                    <div class="blog-content">
+                        <div class="blog-meta">
+                            <div class="blog-date">${formatDate(post.date)}</div>
+                            <div class="read-time">${post.readTime}</div>
+                        </div>
+                        <h3>${post.title}</h3>
+                        <div class="blog-tags">${tagElements}</div>
+                        <p>${post.excerpt}</p>
+                    </div>
+                `;
+                
+                // Animation d'entrée
+                postElement.style.opacity = '0';
+                postElement.style.transform = 'translateY(30px)';
+                postElement.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                
+                container.appendChild(postElement);
+                
+                // Déclencher l'animation
+                setTimeout(() => {
+                    postElement.style.opacity = '1';
+                    postElement.style.transform = 'translateY(0)';
+                }, 100 * index);
+            });
+        }
+
+        // Fonction pour charger les articles du blog
+        function loadBlogPosts() {
+            filterBlogPosts('all');
+        }
+
+        // Mode sombre
+        function toggleTheme() {
+            const html = document.documentElement;
+            const themeToggle = document.getElementById('themeToggle');
+            
+            if (html.getAttribute('data-theme') === 'dark') {
+                html.removeAttribute('data-theme');
+                themeToggle.textContent = '🌙';
+                localStorage.setItem('theme', 'light');
+            } else {
+                html.setAttribute('data-theme', 'dark');
+                themeToggle.textContent = '☀️';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        // Sélecteur de couleurs
+        function initColorPicker() {
+            const colorOptions = document.querySelectorAll('.color-option');
+            const themeToggle = document.getElementById('themeToggle');
+            const colorPicker = document.getElementById('colorPicker');
+            let colorPickerVisible = false;
+
+            // Toggle color picker
+            themeToggle.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                colorPickerVisible = !colorPickerVisible;
+                colorPicker.classList.toggle('active', colorPickerVisible);
+            });
+
+            // Fermer si on clique ailleurs
+            document.addEventListener('click', (e) => {
+                if (!colorPicker.contains(e.target) && !themeToggle.contains(e.target)) {
+                    colorPickerVisible = false;
+                    colorPicker.classList.remove('active');
+                }
+            });
+
+            colorOptions.forEach(option => {
+                option.addEventListener('click', () => {
+                    // Retirer active de tous
+                    colorOptions.forEach(opt => opt.classList.remove('active'));
+                    // Ajouter active au sélectionné
+                    option.classList.add('active');
+                    
+                    // Appliquer les couleurs
+                    const colors = JSON.parse(option.getAttribute('data-colors'));
+                    const root = document.documentElement;
+                    
+                    root.style.setProperty('--bg-gradient-start', colors.start);
+                    root.style.setProperty('--bg-gradient-end', colors.end);
+                    root.style.setProperty('--accent-primary', colors.accent);
+                    
+                    // Mode sombre
+                    if (root.getAttribute('data-theme') === 'dark') {
+                        const darkStart = adjustColorBrightness(colors.start, -0.4);
+                        const darkEnd = adjustColorBrightness(colors.end, -0.4);
+                        root.style.setProperty('--bg-gradient-start', darkStart);
+                        root.style.setProperty('--bg-gradient-end', darkEnd);
+                    }
+                    
+                    // Sauvegarder
+                    localStorage.setItem('selectedColors', JSON.stringify(colors));
+                });
+            });
+        }
+
+        // Fonction pour ajuster la luminosité des couleurs
+        function adjustColorBrightness(hex, factor) {
+            const r = parseInt(hex.slice(1, 3), 16);
+            const g = parseInt(hex.slice(3, 5), 16);
+            const b = parseInt(hex.slice(5, 7), 16);
+            
+            const newR = Math.round(Math.max(0, Math.min(255, r + (255 - r) * factor)));
+            const newG = Math.round(Math.max(0, Math.min(255, g + (255 - g) * factor)));
+            const newB = Math.round(Math.max(0, Math.min(255, b + (255 - b) * factor)));
+            
+            return `#${newR.toString(16).padStart(2, '0')}${newG.toString(16).padStart(2, '0')}${newB.toString(16).padStart(2, '0')}`;
+        }
+
         function showJoinForm() {
             alert('Merci pour ton intérêt ! Envoie-moi un message sur mes réseaux sociaux ou par email pour discuter des opportunités de collaboration !');
         }
+
+        // Initialiser au chargement
+        document.addEventListener('DOMContentLoaded', () => {
+            // Charger le thème sauvegardé
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.documentElement.setAttribute('data-theme', 'dark');
+                document.getElementById('themeToggle').textContent = '☀️';
+            }
+            
+            // Charger les couleurs sauvegardées
+            const savedColors = localStorage.getItem('selectedColors');
+            if (savedColors) {
+                const colors = JSON.parse(savedColors);
+                const root = document.documentElement;
+                root.style.setProperty('--bg-gradient-start', colors.start);
+                root.style.setProperty('--bg-gradient-end', colors.end);
+                root.style.setProperty('--accent-primary', colors.accent);
+                
+                // Mettre à jour le sélecteur visuel
+                const colorOptions = document.querySelectorAll('.color-option');
+                colorOptions.forEach(option => {
+                    const optionColors = JSON.parse(option.getAttribute('data-colors'));
+                    if (optionColors.start === colors.start) {
+                        option.classList.add('active');
+                    } else {
+                        option.classList.remove('active');
+                    }
+                });
+            }
+            
+            loadBlogPosts();
+            initColorPicker();
+            
+            // Ajouter les event listeners pour les filtres blog
+            const filterBtns = document.querySelectorAll('.filter-btn');
+            filterBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const category = btn.getAttribute('data-filter');
+                    filterBlogPosts(category);
+                });
+            });
+        });
+
+        // Fermer le menu en cliquant ailleurs
+        document.addEventListener('click', function(event) {
+            const navLinks = document.getElementById('navLinks');
+            const burger = document.querySelector('.burger-menu');
+            const nav = document.querySelector('nav');
+            
+            if (!nav.contains(event.target) && navLinks.classList.contains('active')) {
+                closeMenu();
+            }
+        });
 
         // Smooth scrolling
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
