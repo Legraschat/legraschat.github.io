@@ -917,10 +917,10 @@
                 
                 <ul class="nav-links" id="navLinks">
                     <li><a href="#accueil" onclick="closeMenu()">Accueil</a></li>
-                    <li><a href="#projets" onclick="closeMenu()">Projets</a></li>
-                    <li><a href="#equipe" onclick="closeMenu()">Équipe</a></li>
-                    <li><a href="#blog" onclick="closeMenu()">Blog</a></li>
-                    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+                    <li><a href="/pages/project/" onclick="closeMenu()">Projets</a></li>
+                    <li><a href="/pages/jobs/v2/" onclick="closeMenu()">Équipe</a></li>
+                    <li><a href="/pages/blog/" onclick="closeMenu()">Blog</a></li>
+                    <li><a href="/pages/contact/" onclick="closeMenu()">Contact</a></li>
                 </ul>
             </nav>
         </div>
@@ -1023,8 +1023,6 @@
                     <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
                         <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
                     </svg>
-                            <a href="#" title="Behance">🎨</a>
-                            <a href="#" title="LinkedIn">💼</a>
                         </div>
                     </div>
                 </div>
@@ -1103,40 +1101,14 @@
         const blogData = [
             {
                 id: 1,
-                title: "Les tendances créatives 2025",
-                excerpt: "Découvrez les nouvelles approches qui transforment la création de contenu cette année...",
+                title: "Legraschat",
+                excerpt: "Test",
                 date: "2025-08-15",
-                tags: ["writing", "social"],
+                tags: ["social"],
                 emoji: "📝",
-                readTime: "5 min"
-            },
-            {
-                id: 2,
-                title: "Développer son audience",
-                excerpt: "Mes stratégies pour construire une communauté engagée sur les réseaux sociaux...",
-                date: "2025-08-10",
-                tags: ["social", "tutorial"],
-                emoji: "🚀",
-                readTime: "8 min"
-            },
-            {
-                id: 3,
-                title: "Outils créatifs indispensables",
-                excerpt: "Ma sélection des meilleurs outils pour créer du contenu de qualité professionnelle...",
-                date: "2025-08-05",
-                tags: ["dev", "tutorial"],
-                emoji: "⚡",
-                readTime: "6 min"
-            },
-            {
-                id: 4,
-                title: "Mon setup de développement",
-                excerpt: "Découvrez mon environnement de travail et mes outils préférés pour coder...",
-                date: "2025-07-28",
-                tags: ["dev"],
-                emoji: "💻",
-                readTime: "4 min"
+                readTime: "30 sec"
             }
+            
         ];
 
         // Menu mobile
@@ -1307,7 +1279,7 @@
         }
 
         function showJoinForm() {
-            alert('Merci pour ton intérêt ! Envoie-moi un message sur mes réseaux sociaux ou par email pour discuter des opportunités de collaboration !');
+            navLinks("https://forms.gle/Q19os2ArauWL29He6");
         }
 
         // Initialiser au chargement
