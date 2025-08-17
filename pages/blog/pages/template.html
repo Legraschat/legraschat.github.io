@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>L'IA et la Création de Contenu : Révolution ou Evolution ? - Blog Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #6366f1;
+        }
+
+        main {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+        }
+
+        .back-to-blog {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .back-to-blog:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(-5px);
+        }
+
+        .article-hero {
+            background: white;
+            margin: 2rem 0;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .article-header {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 4rem 3rem 3rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-header::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 200px;
+            height: 200px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+        }
+
+        .article-category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.5rem 1.5rem;
+            border-radius: 25px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .article-title {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            margin-bottom: 2rem;
+            line-height: 1.5;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            align-items: center;
+            margin-bottom: 2rem;
+            font-size: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-meta span {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.9;
+        }
+
+        .article-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .article-tag {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .article-content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 3rem;
+        }
+
+        .article-image {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            margin: 2rem 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: #6366f1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .article-image::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.1) 50%, transparent 70%);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        .article-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #374151;
+            margin-bottom: 2rem;
+        }
+
+        .article-text h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin: 3rem 0 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid #6366f1;
+            display: inline-block;
+        }
+
+        .article-text h3 {
+            font-size: 1.5rem;
+            color: #374151;
+            margin: 2.5rem 0 1rem;
+        }
+
+        .article-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .article-text ul, .article-text ol {
+            margin: 1.5rem 0 1.5rem 2rem;
+        }
+
+        .article-text li {
+            margin-bottom: 0.8rem;
+        }
+
+        .highlight-box {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border-left: 4px solid #6366f1;
+            padding: 2rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            position: relative;
+        }
+
+        .highlight-box::before {
+            content: '💡';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            background: #6366f1;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+        }
+
+        .highlight-box h4 {
+            color: #6366f1;
+            margin-bottom: 1rem;
+            margin-top: 0.5rem;
+            font-size: 1.2rem;
+        }
+
+        .quote-section {
+            background: #f8fafc;
+            border-left: 5px solid #6366f1;
+            padding: 2rem;
+            margin: 2rem 0;
+            border-radius: 0 10px 10px 0;
+            font-style: italic;
+            font-size: 1.2rem;
+            position: relative;
+        }
+
+        .quote-section::before {
+            content: '"';
+            font-size: 4rem;
+            color: #6366f1;
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-family: serif;
+        }
+
+        .code-block {
+            background: #1f2937;
+            color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 10px;
+            margin: 2rem 0;
+            overflow-x: auto;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'Code';
+            position: absolute;
+            top: -10px;
+            right: 15px;
+            background: #6366f1;
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .article-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 0;
+            border-top: 2px solid #e5e7eb;
+            margin-top: 3rem;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .share-btn {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .share-btn:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .like-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .like-btn {
+            background: none;
+            border: 2px solid #6366f1;
+            color: #6366f1;
+            padding: 0.8rem 1.5rem;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .like-btn:hover, .like-btn.liked {
+            background: #6366f1;
+            color: white;
+        }
+
+        .related-articles {
+            background: white;
+            margin: 3rem 0;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-articles h3 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .related-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 15px;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .related-card:hover {
+            border-color: #6366f1;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .related-card h4 {
+            color: #1f2937;
+            margin-bottom: 0.8rem;
+            font-size: 1.2rem;
+        }
+
+        .related-card p {
+            color: #64748b;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .related-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+            color: #9ca3af;
+        }
+
+        .newsletter-cta {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+
+        .newsletter-cta h3 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .newsletter-cta p {
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
+        .newsletter-input {
+            flex: 1;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .newsletter-button {
+            background: #6366f1;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .newsletter-button:hover {
+            background: #4f46e5;
+        }
+
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: #6366f1;
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        .floating-toc {
+            position: fixed;
+            right: 2rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 15px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 250px;
+            z-index: 100;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .floating-toc.visible {
+            opacity: 1;
+        }
+
+        .floating-toc h4 {
+            margin-bottom: 1rem;
+            color: #1f2937;
+            font-size: 1rem;
+        }
+
+        .toc-item {
+            display: block;
+            color: #64748b;
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-left: 3px solid transparent;
+            padding-left: 1rem;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+        }
+
+        .toc-item:hover, .toc-item.active {
+            color: #6366f1;
+            border-left-color: #6366f1;
+            padding-left: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .article-title {
+                font-size: 2rem;
+            }
+            
+            .article-content {
+                padding: 2rem 1.5rem;
+            }
+            
+            .article-header {
+                padding: 3rem 2rem 2rem;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .floating-toc {
+                display: none;
+            }
+            
+            .article-actions {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+        }
+
+        @media (max-width: 1200px) {
+            .floating-toc {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Mon Portfolio</a>
+                <ul class="nav-links">
+                    <li><a href="/index.html">Accueil</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="/pages/jobs/v2/">Équipe</a></li>
+                    <li><a href="/pages/blog/" class="active">Blog</a></li>
+                    <li><a href="/pages/contact/">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <a href="blog.html" class="back-to-blog">← Retour au blog</a>
+            
+            <article class="article-hero">
+                <header class="article-header">
+                    <div class="article-category">🤖 Technologie</div>
+                    <h1 class="article-title">L'IA et la Création de Contenu : Révolution ou Evolution ?</h1>
+                    <p class="article-subtitle">Une analyse approfondie de l'impact de l'intelligence artificielle sur l'industrie créative et comment les créateurs peuvent s'adapter et tirer parti de ces nouveaux outils.</p>
+                    
+                    <div class="article-meta">
+                        <span>📅 15 Août 2025</span>
+                        <span>👤 Par Alexandre</span>
+                        <span>⏱️ 8 min de lecture</span>
+                        <span>👀 <span id="viewCount">1247</span> vues</span>
+                    </div>
+                    
+                    <div class="article-tags">
+                        <span class="article-tag">Intelligence Artificielle</span>
+                        <span class="article-tag">Création de Contenu</span>
+                        <span class="article-tag">Innovation</span>
+                        <span class="article-tag">Futur</span>
+                    </div>
+                </header>
+
+                <div class="article-content">
+                    <div class="article-image">🎨</div>
+
+                    <p class="article-text">L'intelligence artificielle transforme radicalement le paysage de la création de contenu. Mais s'agit-il vraiment d'une révolution qui va remplacer les créateurs, ou plutôt d'une évolution qui va les augmenter dans leurs capacités créatives ?</p>
+
+                    <h2 id="section1">L'émergence de l'IA créative</h2>
+                    
+                    <p class="article-text">Depuis l'arrivée de ChatGPT, DALL-E, Midjourney et autres outils d'IA générative, le monde de la création a été bouleversé. Ces technologies permettent aujourd'hui de générer du texte, des images, de la musique et même des vidéos en quelques secondes.</p>
+
+                    <div class="highlight-box">
+                        <h4>Point clé</h4>
+                        <p>L'IA ne remplace pas la créativité humaine, elle la démocratise et l'accélère. Le véritable défi est d'apprendre à collaborer avec ces outils pour créer un contenu authentique et différenciant.</p>
+                    </div>
+
+                    <h2 id="section2">Les opportunités pour les créateurs</h2>
+                    
+                    <p class="article-text">Contrairement aux craintes initiales, l'IA ouvre de nouvelles opportunités pour les créateurs :</p>
+
+                    <ul class="article-text">
+                        <li><strong>Accélération du processus créatif</strong> : brainstorming assisté, génération d'idées, prototypage rapide</li>
+                        <li><strong>Automatisation des tâches répétitives</strong> : retouche d'images, correction de textes, optimisation SEO</li>
+                        <li><strong>Exploration de nouveaux formats</strong> : contenu personnalisé, expériences interactives</li>
+                        <li><strong>Démocratisation des compétences techniques</strong> : création sans expertise préalable</li>
+                    </ul>
+
+                    <div class="quote-section">
+                        L'IA ne va pas remplacer les humains, mais les humains qui utilisent l'IA vont remplacer ceux qui ne l'utilisent pas.
+                    </div>
+
+                    <h2 id="section3">Les défis à relever</h2>
+
+                    <p class="article-text">Cependant, cette transition n'est pas sans défis :</p>
+
+                    <div class="article-text">
+                        <h3>1. La question de l'authenticité</h3>
+                        <p>Comment maintenir une voix unique et authentique dans un monde où l'IA peut générer du contenu similaire ? La personnalité et l'expérience humaine deviennent des différenciateurs cruciaux.</p>
+
+                        <h3>2. Les considérations éthiques</h3>
+                        <p>Droits d'auteur, transparence sur l'utilisation d'IA, impact sur l'emploi... Ces questions nécessitent une réflexion approfondie de la part des créateurs et des plateformes.</p>
+
+                        <h3>3. La dépendance technologique</h3>
+                        <p>Il est essentiel de ne pas perdre ses compétences fondamentales en s'appuyant trop sur l'IA.</p>
+                    </div>
+
+                    <div class="code-block">
+// Exemple d'intégration IA dans un workflow créatif
+function createContentWithAI(topic, style) {
+    const aiDraft = generateAIDraft(topic, style);
+    const humanTouch = addPersonalExperience(aiDraft);
+    const finalContent = refineAndOptimize(humanTouch);
+    return finalContent;
+}</div>
+
+                    <h2 id="section4">Stratégies d'adaptation</h2>
+
+                    <p class="article-text">Pour tirer parti de cette révolution technologique, voici mes recommandations :</p>
+
+                    <div class="article-text">
+                        <p><strong>1. Expérimentez sans attendre</strong><br>
+                        Testez différents outils d'IA pour comprendre leurs forces et faiblesses. Plus vous vous familiarisez tôt, plus vous développez un avantage concurrentiel.</p>
+
+                        <p><strong>2. Développez votre signature créative</strong><br>
+                        Renforcez ce qui vous rend unique : votre perspective, vos expériences, votre façon de raconter des histoires.</p>
+
+                        <p><strong>3. Créez des workflows hybrides</strong><br>
+                        Combinez l'efficacité de l'IA avec votre créativité humaine pour un résultat optimal.</p>
+
+                        <p><strong>4. Restez transparent</strong><br>
+                        Communiquez ouvertement sur votre utilisation de l'IA avec votre audience. La transparence renforce la confiance.</p>
+                    </div>
+
+                    <div class="highlight-box">
+                        <h4>Ma prédiction</h4>
+                        <p>Dans 2-3 ans, la distinction ne se fera plus entre "contenu IA" et "contenu humain", mais entre "bon contenu" et "mauvais contenu". L'outil importe moins que le résultat et la valeur apportée à l'audience.</p>
+                    </div>
+
+                    <h2 id="section5">Conclusion : Vers une créativité augmentée</h2>
+
+                    <p class="article-text">L'IA n'est ni une menace ni une solution magique. C'est un outil puissant qui, utilisé intelligemment, peut décupler notre capacité créative. L'avenir appartient aux créateurs qui sauront allier l'efficacité de la machine à la profondeur de l'expérience humaine.</p>
+
+                    <p class="article-text">La révolution est en marche, mais c'est à nous de décider si nous voulons la subir ou la conduire. Mon conseil : embrassez le changement, expérimentez, mais n'oubliez jamais que votre humanité reste votre plus grand atout créatif.</p>
+
+                    <div class="article-actions">
+                        <div class="like-section">
+                            <button class="like-btn" id="likeBtn">
+                                ❤️ <span id="likeCount">127</span> J'aime
+                            </button>
+                        </div>
+                        <div class="share-buttons">
+                            <a href="#" class="share-btn">📱 Partager</a>
+                            <a href="#" class="share-btn">💬 Commenter</a>
+                            <a href="#" class="share-btn">🔗 Copier le lien</a>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <section class="related-articles">
+                <h3>Articles similaires</h3>
+                <div class="related-grid">
+                    <div class="related-card" onclick="location.href='#'">
+                        <h4>Automatiser sa Création de Contenu avec l'IA</h4>
+                        <p>Comment utiliser intelligemment les outils d'IA pour optimiser votre workflow de création...</p>
+                        <div class="related-meta">
+                            <span>5 Août 2025</span>
+                            <span>6 min</span>
+                        </div>
+                    </div>
+                    <div class="related-card" onclick="location.href='#'">
+                        <h4>Créer du Contenu Viral : Mes 10 Secrets</h4>
+                        <p>Les stratégies pour créer du contenu engageant et viral sur les réseaux sociaux...</p>
+                        <div class="related-meta">
+                            <span>10 Août 2025</span>
+                            <span>7 min</span>
+                        </div>
+                    </div>
+                    <div class="related-card" onclick="location.href='#'">
+                        <h4>Storytelling Digital : L'Art de Captiver</h4>
+                        <p>Les techniques narratives qui transforment un simple post en histoire captivante...</p>
+                        <div class="related-meta">
+                            <span>28 Juillet 2025</span>
+                            <span>5 min</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="newsletter-cta">
+                <h3>📬 Ne ratez aucun article</h3>
+                <p>Recevez mes derniers articles et analyses directement dans votre boîte mail. Contenu exclusif et conseils d'expert !</p>
+                <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+                    <input type="email" class="newsletter-input" placeholder="votre@email.com" required>
+                    <button type="submit" class="newsletter-button">S'abonner</button>
+                </form>
+            </section>
+        </div>
+    </main>
+
+    <!-- Table des matières flottante -->
+    <nav class="floating-toc" id="tocNav">
+        <h4>📋 Table des matières</h4>
+        <a href="#section1" class="toc-item">L'émergence de l'IA créative</a>
+        <a href="#section2" class="toc-item">Les opportunités</a>
+        <a href="#section3" class="toc-item">Les défis à relever</a>
+        <a href="#section4" class="toc-item">Stratégies d'adaptation</a>
+        <a href="#section5" class="toc-item">Conclusion</a>
+    </nav>
+
+    <script>
+        // Barre de progression de lecture
+        function updateProgressBar() {
+            const article = document.querySelector('.article-content');
+            const scrollTop = window.scrollY;
+            const docHeight = article.offsetHeight;
+            const winHeight = window.innerHeight;
+            const scrollPercent = scrollTop / (docHeight - winHeight);
+            const scrollPercentRounded = Math.round(scrollPercent * 100);
+            
+            document.getElementById('progressBar').style.width = Math.min(scrollPercentRounded, 100) + '%';
+        }
+
+        // Table des matières flottante
+        function updateTOC() {
+            const toc = document.getElementById('tocNav');
+            const scrollY = window.scrollY;
+            
+            if (scrollY > 600) {
+                toc.classList.add('visible');
+            } else {
+                toc.classList.remove('visible');
+            }
+
+            // Highlight active section
+            const sections = document.querySelectorAll('h2[id]');
+            const tocItems = document.querySelectorAll('.toc-item');
+            
+            sections.forEach((section, index) => {
+                const rect = section.getBoundingClientRect();
+                if (rect.top <= 100 && rect.bottom >= 100) {
+                    tocItems.forEach(item => item.classList.remove('active'));
+                    if (tocItems[index]) {
+                        tocItems[index].classList.add('active');
+                    }
+                }
+            });
+        }
+
+        // Smooth scrolling pour les liens de la TOC
+        document.querySelectorAll('.toc-item').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetSection = document.getElementById(targetId);
+                
+                if (targetSection) {
+                    targetSection.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Gestion du bouton J'aime
+        const likeBtn = document.getElementById('likeBtn');
+        const likeCount = document.getElementById('likeCount');
+        let isLiked = false;
+        let currentLikes = parseInt(likeCount.textContent);
+
+        likeBtn.addEventListener('click', function() {
+            if (!isLiked) {
+                this.classList.add('liked');
+                currentLikes++;
+                likeCount.textContent = currentLikes;
+                isLiked = true;
+                
+                // Animation de like
+                this.style.transform = 'scale(1.2)';
+                setTimeout(() => {
+                    this.style.transform = 'scale(1)';
+                }, 200);
+            }
+        });
+
+        // Compteur de vues dynamique
+        function updateViewCount() {
+            const viewCount = document.getElementById('viewCount');
+            let currentViews = parseInt(viewCount.textContent);
+            
+            // Simule l'augmentation des vues
+            setInterval(() => {
+                if (Math.random() > 0.7) { // 30% de chance d'augmentation
+                    currentViews += Math.floor(Math.random() * 3) + 1;
+                    viewCount.textContent = currentViews;
+                }
+            }, 30000); // Toutes les 30 secondes
+        }
+
+        // Newsletter subscription
+        function subscribeNewsletter(event) {
+            event.preventDefault();
+            const email = event.target.querySelector('.newsletter-input').value;
+            
+            // Animation de succès
+            const button = event.target.querySelector('.newsletter-button');
+            const originalText = button.textContent;
+            
+            button.textContent = 'Inscrit ! ✓';
+            button.style.background = '#10b981';
+            
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.style.background = '#6366f1';
+                event.target.reset();
+            }, 3000);
+        }
+
+        // Partage sur les réseaux sociaux
+        document.querySelectorAll('.share-btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                const text = this.textContent;
+                
+                if (text.includes('Partager')) {
+                    // Simule le partage
+                    if (navigator.share) {
+                        navigator.share({
+                            title: document.querySelector('.article-title').textContent,
+                            text: document.querySelector('.article-subtitle').textContent,
+                            url: window.location.href
+                        });
+                    } else {
+                        // Fallback pour les navigateurs qui ne supportent pas Web Share API
+                        alert('Lien copié dans le presse-papiers !');
+                    }
+                } else if (text.includes('Copier')) {
+                    // Copie le lien
+                    navigator.clipboard.writeText(window.location.href);
+                    this.textContent = '✓ Copié !';
+                    setTimeout(() => {
+                        this.textContent = '🔗 Copier le lien';
+                    }, 2000);
+                } else if (text.includes('Commenter')) {
+                    // Scroll vers les commentaires (ou ouvre une modal)
+                    alert('Fonctionnalité de commentaires à venir !');
+                }
+            });
+        });
+
+        // Animation des éléments au scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialiser les animations
+        document.addEventListener('DOMContentLoaded', function() {
+            // Animation des éléments
+            const elementsToAnimate = document.querySelectorAll('.highlight-box, .quote-section, .code-block, .related-card');
+            
+            elementsToAnimate.forEach((element, index) => {
+                element.style.opacity = '0';
+                element.style.transform = 'translateY(30px)';
+                element.style.transition = `all 0.6s ease ${index * 0.1}s`;
+                observer.observe(element);
+            });
+
+            // Démarrer le compteur de vues
+            updateViewCount();
+        });
+
+        // Event listeners pour le scroll
+        window.addEventListener('scroll', function() {
+            updateProgressBar();
+            updateTOC();
+        });
+
+        // Animation de typing pour le titre
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+
+        // Effet de highlight sur les liens internes
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                    
+                    // Effet de highlight temporaire
+                    targetElement.style.background = 'rgba(99, 102, 241, 0.1)';
+                    targetElement.style.transition = 'background 0.3s ease';
+                    
+                    setTimeout(() => {
+                        targetElement.style.background = 'transparent';
+                    }, 2000);
+                }
+            });
+        });
+
+        // Effet de lecture estimée basé sur le scroll
+        let readingStartTime = Date.now();
+        let hasStartedReading = false;
+
+        window.addEventListener('scroll', function() {
+            if (!hasStartedReading && window.scrollY > 300) {
+                hasStartedReading = true;
+                readingStartTime = Date.now();
+            }
+        });
+
+        // Suivi du temps de lecture (pour les analytics)
+        window.addEventListener('beforeunload', function() {
+            if (hasStartedReading) {
+                const readingTime = Math.round((Date.now() - readingStartTime) / 1000);
+                // Ici vous pourriez envoyer ces données à votre service d'analytics
+                console.log(`Temps de lecture: ${readingTime} secondes`);
+            }
+        });
+
+        // Gestion du mode sombre (bonus)
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Restaurer le mode sombre si activé
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.body.classList.add('dark-mode');
+        }
+
+        // Lazy loading des images (si vous ajoutez de vraies images)
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.classList.remove('lazy');
+                        imageObserver.unobserve(img);
+                    }
+                });
+            });
+
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+
+        // Gestion des erreurs JavaScript
+        window.addEventListener('error', function(e) {
+            console.error('Erreur JavaScript:', e.error);
+            // Ici vous pourriez envoyer l'erreur à un service de monitoring
+        });
+
+        // Performance: Préchargement des articles liés
+        document.querySelectorAll('.related-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                // Précharge la page de l'article au survol
+                const link = this.getAttribute('onclick');
+                if (link && link.includes('location.href')) {
+                    // Ici vous pourriez précharger le contenu
+                }
+            });
+        });
+
+        // Easter egg: Konami Code
+        let konamiCode = [];
+        const konamiSequence = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65];
+
+        document.addEventListener('keydown', function(e) {
+            konamiCode.push(e.keyCode);
+            
+            if (konamiCode.length > konamiSequence.length) {
+                konamiCode.shift();
+            }
+            
+            if (konamiCode.join(',') === konamiSequence.join(',')) {
+                // Easter egg déclenché !
+                document.body.style.animation = 'rainbow 2s infinite';
+                setTimeout(() => {
+                    document.body.style.animation = '';
+                }, 10000);
+                
+                alert('🎉 Easter egg trouvé ! Vous êtes un vrai geek !');
+                konamiCode = [];
+            }
+        });
+
+        // CSS pour l'easter egg
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes rainbow {
+                0% { filter: hue-rotate(0deg); }
+                100% { filter: hue-rotate(360deg); }
+            }
+            
+            .dark-mode {
+                --bg-color: #1f2937;
+                --text-color: #f9fafb;
+                --accent-color: #818cf8;
+            }
+            
+            .dark-mode body {
+                background: linear-gradient(135deg, #1f2937 0%, #111827 100%);
+                color: var(--text-color);
+            }
+            
+            .dark-mode .article-content,
+            .dark-mode .related-articles,
+            .dark-mode .floating-toc {
+                background: var(--bg-color);
+                color: var(--text-color);
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
