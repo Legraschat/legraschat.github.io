@@ -399,7 +399,7 @@
             left: 100%;
         }
 
-        .team-avatar {
+        .legraschat-avatar {
             width: 100px;
             height: 100px;
             border-radius: 50%;
@@ -423,6 +423,32 @@
 
         [data-theme="dark"] .team-avatar:first-child {
             background: url('favicon.png') center/cover, var(--bg-secondary);
+        }
+
+         .nahi-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: url('nahi_profile.jpg') center/cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #9ca3af;
+            border: 3px solid white;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        [data-theme="dark"] .team-avatar {
+            border: 3px solid var(--bg-secondary);
+            background-color: var(--bg-secondary);
+            color: var(--text-secondary);
+        }
+
+        [data-theme="dark"] .team-avatar:first-child {
+            background: url('nahi_profile.jpg') center/cover, var(--bg-secondary);
         }
 
         .team-card:hover .team-avatar {
@@ -957,7 +983,7 @@
                 <h2>Notre Équipe</h2>
                 <div class="team-grid">
                     <div class="team-card">
-                        <div class="team-avatar"></div>
+                        <div class="legraschat-avatar"></div>
                         <h3>Legraschat</h3>
                         <div class="role-tags">
                             <span class="role-tag dev">Dev</span>
@@ -985,7 +1011,7 @@
                     </div>
                     
                     <div class="team-card">
-                        <div class="team-avatar">👤</div>
+                        <div class="nahi-avatar">👤</div>
                         <h3>Nahi</h3>
                         <div class="role-tags">
                             <span class="role-tag responsable">Responsable</span>
