@@ -1,0 +1,732 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #6366f1;
+        }
+
+        main {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+        }
+
+        .page-hero {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .contact-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            margin-top: 2rem;
+        }
+
+        .contact-info {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-info h2, .contact-form h2 {
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 2rem;
+        }
+
+        .contact-methods {
+            space-y: 2rem;
+        }
+
+        .contact-method {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            padding: 1.5rem;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            transition: transform 0.3s ease;
+        }
+
+        .contact-method:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            color: white;
+        }
+
+        .contact-details h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-details p {
+            color: #64748b;
+        }
+
+        .contact-details a {
+            color: #6366f1;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-details a:hover {
+            text-decoration: underline;
+        }
+
+        .social-section {
+            margin-top: 3rem;
+        }
+
+        .social-section h3 {
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+        }
+
+        .social-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .social-card {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            padding: 1.5rem;
+            border-radius: 15px;
+            text-align: center;
+            text-decoration: none;
+            transition: transform 0.3s ease;
+        }
+
+        .social-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .social-card .social-icon {
+            font-size: 2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .social-card .social-name {
+            font-weight: 600;
+            margin-bottom: 0.3rem;
+        }
+
+        .social-card .social-handle {
+            opacity: 0.8;
+            font-size: 0.9rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .submit-button {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            width: 100%;
+            transition: transform 0.3s ease;
+        }
+
+        .submit-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .response-times {
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-top: 2rem;
+        }
+
+        .response-times h3 {
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .response-list {
+            list-style: none;
+        }
+
+        .response-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+            color: #64748b;
+        }
+
+        .response-list li::before {
+            content: "⚡";
+            margin-right: 0.5rem;
+        }
+
+        .faq-section {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            margin-top: 3rem;
+        }
+
+        .faq-section h2 {
+            text-align: center;
+            font-size: 2rem;
+            color: #1f2937;
+            margin-bottom: 2rem;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            background: none;
+            border: none;
+            width: 100%;
+            padding: 1.5rem 0;
+            text-align: left;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #1f2937;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-question:hover {
+            color: #6366f1;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            color: #64748b;
+            line-height: 1.6;
+        }
+
+        .faq-answer.open {
+            max-height: 200px;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-icon {
+            transition: transform 0.3s ease;
+        }
+
+        .faq-icon.rotate {
+            transform: rotate(180deg);
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .contact-info, .contact-form {
+                padding: 2rem;
+            }
+            
+            .social-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+
+        .success-message {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-bottom: 1rem;
+            display: none;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Mon Portfolio</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="equipe.html">Équipe</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html" class="active">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Contactez-Nous</h1>
+                <p>Une idée de collaboration ? Un projet en tête ? Ou simplement envie de discuter ? Nous sommes là pour vous écouter et transformer vos idées en réalité.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h2>Parlons de Votre Projet</h2>
+                    <p style="margin-bottom: 2rem; color: #64748b;">Nous adorons collaborer avec des personnes passionnées. Que ce soit pour du développement, de la création de contenu ou du consulting, contactez-nous !</p>
+                    
+                    <div class="contact-methods">
+                        <div class="contact-method">
+                            <div class="contact-icon">📧</div>
+                            <div class="contact-details">
+                                <h3>Email</h3>
+                                <p><a href="mailto:contact@tonportfolio.com">contact@tonportfolio.com</a></p>
+                                <p>Réponse sous 24h</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">💬</div>
+                            <div class="contact-details">
+                                <h3>Discord</h3>
+                                <p><a href="#">ton_pseudo#1234</a></p>
+                                <p>Pour les discussions rapides</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">📱</div>
+                            <div class="contact-details">
+                                <h3>Téléphone</h3>
+                                <p><a href="tel:+33123456789">+33 1 23 45 67 89</a></p>
+                                <p>Lun-Ven, 9h-18h</p>
+                            </div>
+                        </div>
+
+                        <div class="contact-method">
+                            <div class="contact-icon">📍</div>
+                            <div class="contact-details">
+                                <h3>Localisation</h3>
+                                <p>Cahors, France</p>
+                                <p>Rencontres possibles sur RDV</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="response-times">
+                        <h3>Temps de Réponse</h3>
+                        <ul class="response-list">
+                            <li>Email : 24h maximum</li>
+                            <li>Discord : Quelques heures</li>
+                            <li>Téléphone : Immédiat (heures ouvrées)</li>
+                            <li>Projets urgents : Dans l'heure</li>
+                        </ul>
+                    </div>
+
+                    <div class="social-section">
+                        <h3>Suivez-moi sur les Réseaux</h3>
+                        <div class="social-grid">
+                            <a href="#" class="social-card">
+                                <div class="social-icon">📸</div>
+                                <div class="social-name">Instagram</div>
+                                <div class="social-handle">@ton_insta</div>
+                            </a>
+                            <a href="#" class="social-card">
+                                <div class="social-icon">🐦</div>
+                                <div class="social-name">Twitter</div>
+                                <div class="social-handle">@ton_twitter</div>
+                            </a>
+                            <a href="#" class="social-card">
+                                <div class="social-icon">💼</div>
+                                <div class="social-name">LinkedIn</div>
+                                <div class="social-handle">Ton Nom</div>
+                            </a>
+                            <a href="#" class="social-card">
+                                <div class="social-icon">🎬</div>
+                                <div class="social-name">TikTok</div>
+                                <div class="social-handle">@ton_tiktok</div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <h2>Envoyez un Message</h2>
+                    <div id="successMessage" class="success-message">
+                        ✅ Votre message a été envoyé avec succès ! Nous vous répondrons bientôt.
+                    </div>
+                    
+                    <form onsubmit="submitForm(event)">
+                        <div class="form-group">
+                            <label for="name">Nom complet *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="company">Entreprise / Organisation</label>
+                            <input type="text" id="company" name="company">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">Type de projet *</label>
+                            <select id="subject" name="subject" required>
+                                <option value="">Sélectionnez un type</option>
+                                <option value="dev">Développement Web/Mobile</option>
+                                <option value="content">Création de Contenu</option>
+                                <option value="social">Stratégie Réseaux Sociaux</option>
+                                <option value="writing">Rédaction / Écriture</option>
+                                <option value="consulting">Consulting</option>
+                                <option value="collaboration">Collaboration</option>
+                                <option value="other">Autre</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="budget">Budget estimé</label>
+                            <select id="budget" name="budget">
+                                <option value="">Sélectionnez un budget</option>
+                                <option value="500-1000">500€ - 1 000€</option>
+                                <option value="1000-5000">1 000€ - 5 000€</option>
+                                <option value="5000-10000">5 000€ - 10 000€</option>
+                                <option value="10000+">10 000€+</option>
+                                <option value="discuss">À discuter</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="timeline">Délai souhaité</label>
+                            <select id="timeline" name="timeline">
+                                <option value="">Sélectionnez un délai</option>
+                                <option value="urgent">Urgent (- de 1 semaine)</option>
+                                <option value="1month">1 mois</option>
+                                <option value="3months">2-3 mois</option>
+                                <option value="flexible">Flexible</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">Décrivez votre projet *</label>
+                            <textarea id="message" name="message" required placeholder="Parlez-nous de votre projet, vos objectifs, vos attentes..."></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-button">Envoyer le Message</button>
+                    </form>
+                </div>
+            </div>
+
+            <section class="faq-section">
+                <h2>Questions Fréquentes</h2>
+                
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Quels types de projets acceptez-vous ?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Nous travaillons sur des projets de développement web/mobile, création de contenu pour les réseaux sociaux, rédaction, design graphique et consulting digital. Nous sommes ouverts à tous types de collaborations créatives !
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Quels sont vos tarifs ?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Nos tarifs varient selon la complexité et l'ampleur du projet. Nous proposons des tarifs à l'heure, au forfait ou en collaboration long terme. Contactez-nous pour un devis personnalisé !
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Combien de temps prend un projet typique ?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Cela dépend du type de projet : un site web simple peut prendre 2-4 semaines, une stratégie de contenu 1-2 semaines, et les projets plus complexes peuvent s'étaler sur plusieurs mois. Nous établissons toujours un planning clair dès le début.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Travaillez-vous avec des clients internationaux ?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Absolument ! Nous avons l'habitude de travailler à distance et collaborons avec des clients du monde entier. Nous nous adaptons aux fuseaux horaires et utilisons tous les outils de communication modernes.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Proposez-vous un suivi après livraison ?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        Oui ! Nous incluons toujours une période de support gratuit après livraison (durée selon le projet). Nous proposons également des contrats de maintenance et d'évolution pour un suivi long terme.
+                    </div>
+                </div>
+
+                <div class="faq-item">
+                    <button class="faq-question" onclick="toggleFaq(this)">
+                        Comment se déroule une collaboration ?
+                        <span class="faq-icon">▼</span>
+                    </button>
+                    <div class="faq-answer">
+                        1) Premier contact et définition des besoins, 2) Proposition et devis détaillé, 3) Signature et acompte, 4) Développement avec points réguliers, 5) Tests et corrections, 6) Livraison et formation si nécessaire, 7) Suivi post-livraison.
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <script>
+        function submitForm(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simuler l'envoi du formulaire
+            const successMessage = document.getElementById('successMessage');
+            successMessage.style.display = 'block';
+            
+            // Scroll vers le message de succès
+            successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Reset du formulaire
+            event.target.reset();
+            
+            // Cacher le message après 5 secondes
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+            
+            // Fermer toutes les autres FAQ
+            document.querySelectorAll('.faq-answer').forEach(item => {
+                if (item !== answer) {
+                    item.classList.remove('open');
+                }
+            });
+            
+            document.querySelectorAll('.faq-icon').forEach(item => {
+                if (item !== icon) {
+                    item.classList.remove('rotate');
+                }
+            });
+            
+            // Toggle la FAQ actuelle
+            answer.classList.toggle('open');
+            icon.classList.toggle('rotate');
+        }
+
+        // Animation des éléments au scroll
+        const observerOptions = {
+            threshold: 0.2
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Initialiser les animations
+        document.querySelectorAll('.contact-method, .social-card, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+
+        // Validation en temps réel
+        document.querySelectorAll('input[required], textarea[required], select[required]').forEach(field => {
+            field.addEventListener('blur', function() {
+                if (this.value.trim() === '') {
+                    this.style.borderColor = '#ef4444';
+                } else {
+                    this.style.borderColor = '#10b981';
+                }
+            });
+
+            field.addEventListener('input', function() {
+                if (this.value.trim() !== '') {
+                    this.style.borderColor = '#10b981';
+                }
+            });
+        });
+
+        // Validation email
+        document.getElementById('email').addEventListener('input', function() {
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (emailRegex.test(this.value)) {
+                this.style.borderColor = '#10b981';
+            } else if (this.value !== '') {
+                this.style.borderColor = '#ef4444';
+            }
+        });
+    </script>
+</body>
+</html>

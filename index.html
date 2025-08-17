@@ -3,166 +3,501 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Legraschat - Portfolio</title>
+    <title>Portfolio - Créateur de Contenu</title>
     <link rel="icon" type="image/png" href="favicon.png">
-    
-    <!-- ✅ Remplacement de l'ancien script par la version CSS publique -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
     <style>
-        /* Styles globaux */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Arial, sans-serif;
         }
 
         body {
-            background-color: #1a1a2e;
-            color: white;
-            text-align: center;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
         }
 
         header {
-            padding: 50px 20px;
-            background-color: #16213e;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
         }
 
-        .profile-pic {
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: #6366f1;
+        }
+
+        main {
+            padding-top: 100px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 4rem 0;
+            color: white;
+        }
+
+        .profile-img {
             width: 150px;
             height: 150px;
             border-radius: 50%;
-            border: 4px solid #e94560;
+            border: 5px solid white;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            margin-bottom: 2rem;
+            object-fit: cover;
+            background: #f3f4f6;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: auto;
+            margin-right: auto;
+            font-size: 3rem;
+            color: #9ca3af;
         }
 
-        h1 {
-            margin-top: 10px;
-            font-size: 2.5rem;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
         }
 
-        p {
-            font-size: 1.2rem;
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: white;
+            color: #6366f1;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
         }
 
         .section {
-            margin: 50px 20px;
+            background: white;
+            margin: 3rem 0;
+            padding: 4rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
-        h2 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-            color: #e94560;
+        .section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            color: #1f2937;
         }
 
-        .grid {
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            justify-items: center;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        .card {
-            background: #0f3460;
-            padding: 20px;
-            border-radius: 10px;
-            width: 250px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+        .project-card {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            border: 1px solid #e2e8f0;
         }
 
-        .card h3 {
-            color: #e94560;
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .project-icon {
+            width: 60px;
+            height: 60px;
+            background: #6366f1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
             font-size: 1.5rem;
         }
 
-        .card p {
-            font-size: 1rem;
-            color: #ddd;
+        .project-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
         }
 
-        .card a {
-            display: inline-block;
-            margin-top: 10px;
-            padding: 8px 15px;
-            background-color: #e94560;
-            color: white;
+        .project-card p {
+            color: #64748b;
+            margin-bottom: 1.5rem;
+        }
+
+        .project-link {
+            color: #6366f1;
             text-decoration: none;
-            border-radius: 5px;
-            transition: 0.3s;
+            font-weight: 600;
         }
 
-        .card a:hover {
-            background-color: #b92d45;
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .team-card {
+            text-align: center;
+            padding: 2rem;
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-avatar {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            background: #e5e7eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: #9ca3af;
+        }
+
+        .join-team {
+            text-align: center;
+        }
+
+        .join-button {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(99, 102, 241, 0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .join-button:hover {
+            transform: translateY(-2px);
+        }
+
+        .blog-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .blog-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .blog-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .blog-image {
+            height: 200px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+        }
+
+        .blog-content {
+            padding: 1.5rem;
+        }
+
+        .blog-date {
+            color: #6366f1;
+            font-size: 0.9rem;
+            font-weight: 600;
         }
 
         footer {
-            padding: 20px;
-            background: #16213e;
-            margin-top: 50px;
+            background: rgba(255, 255, 255, 0.95);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 4rem;
         }
 
-        .social-icons a {
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: #6366f1;
             color: white;
-            font-size: 1.5rem;
-            margin: 0 10px;
-            transition: 0.3s;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: background 0.3s ease;
         }
 
-        .social-icons a:hover {
-            color: #e94560;
+        .social-links a:hover {
+            background: #4f46e5;
         }
 
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+            
+            .hero h1 {
+                font-size: 2rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .section h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
     </style>
 </head>
 <body>
-
     <header>
-        <img src="profile.jpg" alt="Photo de profil" class="profile-pic">
-        <h1>Legraschat</h1>
-        <p>Développeur & Créateur de contenu</p>
+        <div class="container">
+            <nav>
+                <div class="logo">Mon Portfolio</div>
+                <ul class="nav-links">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#projets">Projets</a></li>
+                    <li><a href="pages/jobs/v2/index.html">Équipe</a></li>
+                    <li><a href="#blog">Blog</a></li>
+                    <li><a href="/pages/contact/index.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
     </header>
 
-    <section class="section">
-        <h2>Projets</h2>
-        <div class="grid">
-            <div class="card">
-                <p>Graschatium</p>
-                <h3>Projet créatif et innovant</h3>
-                <a href="project/graschatium.html">Voir</a>
+    <main>
+        <section id="accueil" class="hero">
+            <div class="container">
+                <div class="profile-img">👤</div>
+                <h1>Créateur de Contenu</h1>
+                <p>Développement • Écriture • Réseaux Sociaux</p>
+                <a href="#projets" class="cta-button">Découvrir mes projets</a>
             </div>
-        </div>
-    </section>
+            <div class="scroll-indicator">⬇</div>
+        </section>
 
-    <section class="section">
-        <h2>Équipe</h2>
-        <div class="grid">
-            <div class="card">
-                <p>Nahi</p>
-                <h3>Manageuse</h3>
-            </div>
-        <div class="grid">
-            <div class="card">
-                <h3>Le staff de Legraschat</h3>
-                <a href="project/staff.html">Voir</a>
-            </div>
-        </div>
-            <div class="card">
-                <h3>Tu veux nous rejoindre ?</h3>
-                <p>Découvre nos offres et postule dès maintenant !</p>
-                <a href="jobs/">Rejoindre</a>
-            </div>
-        </div>
-    </section>
+        <div class="container">
+            <section id="projets" class="section">
+                <h2>Mes Projets</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-icon">💻</div>
+                        <h3>Projets de Développement</h3>
+                        <p>Applications web, sites internet, outils innovants et solutions techniques créées pour résoudre des problèmes concrets.</p>
+                        <a href="#" class="project-link">Voir les projets →</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-icon">✍️</div>
+                        <h3>Projets d'Écriture</h3>
+                        <p>Articles, stories, scripts et contenus créatifs pour différentes plateformes et audiences.</p>
+                        <a href="#" class="project-link">Lire mes écrits →</a>
+                    </div>
+                    
+                    <div class="project-card">
+                        <div class="project-icon">📱</div>
+                        <h3>Contenu Réseaux Sociaux</h3>
+                        <p>Stratégies de contenu, campagnes créatives et engagement communautaire sur diverses plateformes.</p>
+                        <a href="#" class="project-link">Voir mes réseaux →</a>
+                    </div>
+                </div>
+            </section>
 
-    <footer>
-        <p>Retrouvez-moi sur mes réseaux</p>
-        <div class="social-icons">
-            <a href="https://www.youtube.com/@LeVraiLegraschat" target="_blank"><i class="fab fa-youtube"></i></a>
-            <a href="https://www.twitch.tv/legraschat" target="_blank"><i class="fab fa-twitch"></i></a>
-            <a href="https://twitter.com/LeVraiLegraschat" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://discord.gg/77V3ryPTr3" target="_blank"><i class="fab fa-discord"></i></a>
+            <section id="equipe" class="section">
+                <h2>Notre Équipe</h2>
+                <div class="team-grid">
+                    <div class="team-card">
+                        <div class="team-avatar">👤</div>
+                        <h3>Moi</h3>
+                        <p>Créateur de Contenu & Développeur</p>
+                        <p>Lead créatif, développement et stratégie de contenu</p>
+                    </div>
+                    
+                    <div class="team-card">
+                        <div class="team-avatar">👤</div>
+                        <h3>Coéquipier</h3>
+                        <p>Spécialiste [Rôle à définir]</p>
+                        <p>Expertise complémentaire et collaboration créative</p>
+                    </div>
+                </div>
+                
+                <div class="join-team">
+                    <h3>Envie de nous rejoindre ?</h3>
+                    <p>Nous sommes toujours à la recherche de talents créatifs et passionnés !</p>
+                    <button class="join-button" onclick="showJoinForm()">Tu veux nous rejoindre ?</button>
+                </div>
+            </section>
+
+            <section id="blog" class="section">
+                <h2>Derniers Articles</h2>
+                <div class="blog-preview">
+                    <div class="blog-card">
+                        <div class="blog-image">📝</div>
+                        <div class="blog-content">
+                            <div class="blog-date">15 Août 2025</div>
+                            <h3>Les tendances créatives 2025</h3>
+                            <p>Découvrez les nouvelles approches qui transforment la création de contenu cette année...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">🚀</div>
+                        <div class="blog-content">
+                            <div class="blog-date">10 Août 2025</div>
+                            <h3>Développer son audience</h3>
+                            <p>Mes stratégies pour construire une communauté engagée sur les réseaux sociaux...</p>
+                        </div>
+                    </div>
+                    
+                    <div class="blog-card">
+                        <div class="blog-image">⚡</div>
+                        <div class="blog-content">
+                            <div class="blog-date">5 Août 2025</div>
+                            <h3>Outils créatifs indispensables</h3>
+                            <p>Ma sélection des meilleurs outils pour créer du contenu de qualité professionnelle...</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer id="contact">
+        <div class="container">
+            <div class="social-links">
+                <a href="#">📸</a>
+                <a href="#">🐦</a>
+                <a href="#">💼</a>
+                <a href="#">📧</a>
+            </div>
+            <p>&copy; 2025 Mon Portfolio. Tous droits réservés.</p>
         </div>
     </footer>
 
+    <script>
+        function showJoinForm() {
+            alert('Merci pour ton intérêt ! Envoie-moi un message sur mes réseaux sociaux ou par email pour discuter des opportunités de collaboration !');
+        }
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Header background on scroll
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+    </script>
 </body>
 </html>

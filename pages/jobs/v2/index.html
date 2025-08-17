@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Notre Équipe - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #6366f1;
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: #6366f1;
+        }
+
+        main {
+            padding-top: 100px;
+            padding-bottom: 4rem;
+        }
+
+        .page-hero {
+            text-align: center;
+            padding: 3rem 0;
+            color: white;
+        }
+
+        .page-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .page-hero p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .content-section {
+            background: white;
+            margin: 2rem 0;
+            padding: 4rem 0;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .team-member {
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            border-radius: 20px;
+            padding: 3rem;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+
+        .member-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin: 0 auto 2rem;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .member-name {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .member-role {
+            font-size: 1.2rem;
+            color: #6366f1;
+            font-weight: 600;
+            margin-bottom: 1rem;
+        }
+
+        .member-bio {
+            color: #64748b;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .member-skills {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .skill-tag {
+            background: #e0e7ff;
+            color: #3730a3;
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .member-social {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: #6366f1;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-link:hover {
+            background: #4f46e5;
+            transform: translateY(-2px);
+        }
+
+        .join-section {
+            text-align: center;
+            padding: 4rem 0;
+            background: linear-gradient(135deg, #fef7ff 0%, #f3e8ff 100%);
+            border-radius: 20px;
+            margin: 3rem 0;
+        }
+
+        .join-content h2 {
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .join-content p {
+            font-size: 1.2rem;
+            color: #64748b;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .join-benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .benefit-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .benefit-icon {
+            width: 60px;
+            height: 60px;
+            background: #6366f1;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        .benefit-card h3 {
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
+
+        .join-button {
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            color: white;
+            border: none;
+            padding: 1.2rem 3rem;
+            border-radius: 50px;
+            font-size: 1.2rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .join-button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(99, 102, 241, 0.4);
+        }
+
+        .values-section {
+            margin: 4rem 0;
+        }
+
+        .values-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            color: #1f2937;
+            margin-bottom: 3rem;
+        }
+
+        .values-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .value-card {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .value-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .value-card h3 {
+            font-size: 1.5rem;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .contact-form {
+            background: white;
+            padding: 3rem;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 2rem auto 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 600;
+            color: #1f2937;
+        }
+
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%;
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none;
+            border-color: #6366f1;
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        @media (max-width: 768px) {
+            .page-hero h1 {
+                font-size: 2rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .team-member {
+                padding: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .join-content h2 {
+                font-size: 2rem;
+            }
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal.show {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            position: relative;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">Mon Portfolio</a>
+                <ul class="nav-links">
+                    <li><a href="index.html">Accueil</a></li>
+                    <li><a href="projets.html">Projets</a></li>
+                    <li><a href="equipe.html" class="active">Équipe</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="page-hero">
+            <div class="container">
+                <h1>Notre Équipe</h1>
+                <p>Rencontrez les créatifs passionnés qui donnent vie à tous nos projets. Ensemble, nous créons du contenu qui inspire et innove.</p>
+            </div>
+        </section>
+
+        <div class="container">
+            <section class="content-section">
+                <div class="team-grid">
+                    <div class="team-member">
+                        <div class="member-avatar">👤</div>
+                        <h2 class="member-name">Toi</h2>
+                        <div class="member-role">Créateur de Contenu & Lead Développeur</div>
+                        <p class="member-bio">
+                            Passionné par la création sous toutes ses formes, je combine développement web, écriture créative et stratégie de contenu pour créer des expériences uniques. Spécialisé dans les technologies modernes et l'engagement communautaire.
+                        </p>
+                        <div class="member-skills">
+                            <span class="skill-tag">React</span>
+                            <span class="skill-tag">Node.js</span>
+                            <span class="skill-tag">Content Strategy</span>
+                            <span class="skill-tag">Creative Writing</span>
+                            <span class="skill-tag">Social Media</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">📸</a>
+                            <a href="#" class="social-link">🐦</a>
+                            <a href="#" class="social-link">💼</a>
+                            <a href="#" class="social-link">📧</a>
+                        </div>
+                    </div>
+
+                    <div class="team-member">
+                        <div class="member-avatar">🎨</div>
+                        <h2 class="member-name">Nom du Coéquipier</h2>
+                        <div class="member-role">Designer Créatif & Spécialiste Contenu</div>
+                        <p class="member-bio">
+                            Expert en design visuel et stratégie créative, apporte une approche artistique unique à tous nos projets. Spécialisé dans la création d'identités visuelles fortes et l'optimisation de l'engagement sur les réseaux sociaux.
+                        </p>
+                        <div class="member-skills">
+                            <span class="skill-tag">Graphic Design</span>
+                            <span class="skill-tag">Video Editing</span>
+                            <span class="skill-tag">Photography</span>
+                            <span class="skill-tag">Brand Identity</span>
+                            <span class="skill-tag">Adobe Suite</span>
+                            <span class="skill-tag">Animation</span>
+                        </div>
+                        <div class="member-social">
+                            <a href="#" class="social-link">🎨</a>
+                            <a href="#" class="social-link">📸</a>
+                            <a href="#" class="social-link">💼</a>
+                            <a href="#" class="social-link">📧</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="values-section">
+                    <h2>Nos Valeurs</h2>
+                    <div class="values-grid">
+                        <div class="value-card">
+                            <div class="value-icon">💡</div>
+                            <h3>Innovation</h3>
+                            <p>Nous explorons constamment de nouvelles idées et technologies pour créer du contenu unique et impactant.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🤝</div>
+                            <h3>Collaboration</h3>
+                            <p>Notre force réside dans notre capacité à travailler ensemble et à combiner nos expertises complémentaires.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🎯</div>
+                            <h3>Excellence</h3>
+                            <p>Nous nous engageons à livrer un travail de qualité supérieure dans chacun de nos projets.</p>
+                        </div>
+                        <div class="value-card">
+                            <div class="value-icon">🚀</div>
+                            <h3>Passion</h3>
+                            <p>Notre amour pour la création et l'innovation drive chaque décision et chaque projet que nous entreprenons.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="join-section">
+                <div class="join-content">
+                    <h2>Rejoins Notre Équipe !</h2>
+                    <p>Nous sommes toujours à la recherche de talents créatifs et passionnés qui partagent notre vision. Que tu sois développeur, designer, créateur de contenu ou expert en marketing, nous avons peut-être une place pour toi !</p>
+
+                    <div class="join-benefits">
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🌟</div>
+                            <h3>Projets Variés</h3>
+                            <p>Travaille sur des projets diversifiés et stimulants dans le développement, la création de contenu et les réseaux sociaux.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">📈</div>
+                            <h3>Évolution Continue</h3>
+                            <p>Développe tes compétences avec des formations et des défis créatifs réguliers.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🎨</div>
+                            <h3>Liberté Créative</h3>
+                            <p>Exprime ta créativité et propose tes idées dans un environnement bienveillant.</p>
+                        </div>
+                        <div class="benefit-card">
+                            <div class="benefit-icon">🌍</div>
+                            <h3>Travail Flexible</h3>
+                            <p>Travaille à distance ou en présentiel selon tes préférences et contraintes.</p>
+                        </div>
+                    </div>
+
+                    <button class="join-button" onclick="showJoinModal()">Postule Maintenant</button>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Modal de candidature -->
+    <div id="joinModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" onclick="closeJoinModal()">&times;</button>
+            <h2 style="text-align: center; margin-bottom: 2rem; color: #1f2937;">Rejoins Notre Équipe</h2>
+            
+            <form class="contact-form" onsubmit="submitApplication(event)">
+                <div class="form-group">
+                    <label for="name">Nom complet *</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="role">Domaine d'expertise *</label>
+                    <select id="role" name="role" required>
+                        <option value="">Sélectionne ton domaine</option>
+                        <option value="dev">Développement Web/Mobile</option>
+                        <option value="design">Design & Création Visuelle</option>
+                        <option value="writing">Écriture & Rédaction</option>
+                        <option value="social">Réseaux Sociaux & Marketing</option>
+                        <option value="video">Vidéo & Montage</option>
+                        <option value="other">Autre</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="experience">Expérience</label>
+                    <input type="text" id="experience" name="experience" placeholder="Ex: 3 ans en développement React">
+                </div>
+
+                <div class="form-group">
+                    <label for="portfolio">Portfolio/Site Web</label>
+                    <input type="url" id="portfolio" name="portfolio" placeholder="https://ton-portfolio.com">
+                </div>
+
+                <div class="form-group">
+                    <label for="motivation">Pourquoi veux-tu nous rejoindre ? *</label>
+                    <textarea id="motivation" name="motivation" required placeholder="Parle-nous de ta motivation et de ce que tu peux apporter à l'équipe..."></textarea>
+                </div>
+
+                <button type="submit" class="join-button" style="width: 100%;">Envoyer ma candidature</button>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        function showJoinModal() {
+            document.getElementById('joinModal').classList.add('show');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeJoinModal() {
+            document.getElementById('joinModal').classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        function submitApplication(event) {
+            event.preventDefault();
+            
+            const formData = new FormData(event.target);
+            const data = Object.fromEntries(formData);
+            
+            // Simuler l'envoi de la candidature
+            alert(`Merci ${data.name} ! Ta candidature a été envoyée avec succès. Nous te recontacterons bientôt !`);
+            
+            closeJoinModal();
+            event.target.reset();
+        }
+
+        // Fermer le modal en cliquant à l'extérieur
+        document.getElementById('joinModal').addEventListener('click', function(event) {
+            if (event.target === this) {
+                closeJoinModal();
+            }
+        });
+
+        // Animation des cartes équipe au scroll
+        const observerOptions = {
+            threshold: 0.3
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.team-member, .value-card, .benefit-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
